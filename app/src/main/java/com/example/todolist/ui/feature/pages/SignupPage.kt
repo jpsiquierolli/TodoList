@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun LoginPage(modifier: Modifier = Modifier, navController: NavController, authViewModel: AuthViewModel){
+fun SignupPage(modifier: Modifier = Modifier, navController: NavController, authViewModel: AuthViewModel){
 
     var email by remember{
         mutableStateOf("")
@@ -36,7 +36,7 @@ fun LoginPage(modifier: Modifier = Modifier, navController: NavController, authV
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Login Page", fontSize = 32.sp)
+        Text(text = "Signup Page", fontSize = 32.sp)
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -44,7 +44,7 @@ fun LoginPage(modifier: Modifier = Modifier, navController: NavController, authV
             value = email,
             onValueChange = {
                 email = it
-        },
+            },
             label = {
                 Text(text = "Email")
             }
@@ -68,15 +68,15 @@ fun LoginPage(modifier: Modifier = Modifier, navController: NavController, authV
         Button(onClick = {
 
         }) {
-            Text(text = "Login")
+            Text(text = "Create Account")
         }
 
         Spacer(modifier = Modifier.height(8.dp))
 
         TextButton(onClick =  {
-            navController.navigate("singup")
+            navController.navigate("login")
         }){
-            Text(text = "don't have an account, Signup")
+            Text(text = "Already have an account, Login")
 
         }
 
