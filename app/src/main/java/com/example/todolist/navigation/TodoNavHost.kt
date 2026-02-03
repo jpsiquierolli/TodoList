@@ -10,7 +10,7 @@ import com.example.todolist.ui.feature.addedit.AddEditScreen
 import com.example.todolist.ui.feature.list.ListScreen
 import com.example.todolist.ui.feature.pages.AuthViewModel
 import com.example.todolist.ui.feature.pages.LoginPage
-import com.example.todolist.ui.feature.pages.SingupPage
+import com.example.todolist.ui.feature.pages.SignupPage
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -54,7 +54,7 @@ fun TodoNavHost(modifier: Modifier = Modifier, authViewModel : AuthViewModel) {
         }
 
         composable<SignupRoute>{
-            SingupPage(modifier, navController, authViewModel)
+            SignupPage(modifier, navController, authViewModel)
         }
     }
 }
