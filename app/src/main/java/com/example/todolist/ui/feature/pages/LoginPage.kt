@@ -75,9 +75,9 @@ fun LoginPage(modifier: Modifier = Modifier, navController: NavController, authV
         Spacer(modifier = Modifier.height(8.dp))
 
         TextButton(onClick =  {
-            navController.navigate("Signup")
+            navController.navigate("signup")
         }){
-            Text(text = "Don't have an account, login")
+            Text(text = "Don't have an account, signup")
 
         }
 

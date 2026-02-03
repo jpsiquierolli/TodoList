@@ -33,6 +33,9 @@ fun TodoNavHost(modifier: Modifier = Modifier, authViewModel : AuthViewModel) {
     NavHost(navController = navController, startDestination = LoginRoute)  {
         composable<ListRoute>{
             ListScreen(
+
+                navController = navController,
+                authViewModel = authViewModel,
                 navigateToAddEditScreen = {id ->
                     navController.navigate(AddEditRoute(id = id))
                 }
