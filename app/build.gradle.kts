@@ -55,6 +55,9 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.androidx.compose.runtime.livedata)
 
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation("com.google.firebase:firebase-firestore-ktx")
+
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)

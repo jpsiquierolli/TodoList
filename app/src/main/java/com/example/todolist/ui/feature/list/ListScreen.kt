@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.todolist.data.FirebaseTodoRepository
 import com.example.todolist.data.TodoDatabaseProvider
 import com.example.todolist.data.TodoRepositoryImpl
 import com.example.todolist.domain.todo1
@@ -44,9 +45,12 @@ fun ListScreen(
     authViewModel: AuthViewModel
 ) {
     val authState = authViewModel.authState.observeAsState()
-    val context = LocalContext.current.applicationContext
-    val database = TodoDatabaseProvider.provide(context)
-    val repository = TodoRepositoryImpl(database.todoDao)
+    // val context = LocalContext.current.applicationContext
+    // val database = TodoDatabaseProvider.provide(context)
+    // val repository = TodoRepositoryImpl(database.todoDao)
+
+    val repository = FirebaseTodoRepository()
+
     val viewModel = viewModel<ListViewModel>() {
         ListViewModel(repository = repository)
     }
