@@ -31,7 +31,7 @@ Aplicativo Android de lista de tarefas desenvolvido para o trabalho da disciplin
 
 ```text
 com.example.todolist/
-├── data/           # DAOs, entidades e repositórios
+├── data/           # Entidades e repositórios
 ├── domain/         # Modelos de dados
 ├── navigation/     # Configuração de navegação
 └── ui/             # Camada de apresentação
