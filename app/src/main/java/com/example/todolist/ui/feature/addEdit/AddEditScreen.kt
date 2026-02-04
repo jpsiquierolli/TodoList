@@ -77,7 +77,8 @@ fun AddEditScreen(
         title = title,
         description = description,
         snackbarHostState = snackbarHostState,
-        onEvent = viewModel::onEvent
+        onEvent = viewModel::onEvent,
+        navigateBack = navigateBack
     )
 }
 
@@ -87,11 +88,13 @@ fun AddEditContent(
     description: String?,
     snackbarHostState: SnackbarHostState,
     onEvent : (AddEditEvent) -> Unit = { },
+    navigateBack: () -> Unit = { }
 ) {
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 onEvent(AddEditEvent.Save)
+                navigateBack()
             }) {
                 Icon(Icons.Default.Check, contentDescription = "Save")
             }
@@ -146,6 +149,7 @@ private fun AddEditContentPreview() {
             description = null,
             snackbarHostState = SnackbarHostState(),
             onEvent = {},
+            navigateBack = {}
         )
     }
 }

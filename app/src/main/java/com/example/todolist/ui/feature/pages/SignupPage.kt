@@ -42,7 +42,13 @@ fun SignupPage(modifier: Modifier = Modifier, navController: NavController, auth
 
     LaunchedEffect(authState.value) {
         when (authState.value) {
-            is AuthState.Authenticated -> navController.navigate(ListRoute)
+            is AuthState.Authenticated -> {
+                navController.navigate(ListRoute) {
+                    popUpTo(navController.graph.startDestinationId) {
+                        inclusive = true
+                    }
+                }
+            }
             is AuthState.Error -> Toast.makeText(
                 context,
                 (authState.value as AuthState.Error).message,
