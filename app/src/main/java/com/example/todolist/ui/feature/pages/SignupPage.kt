@@ -23,6 +23,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.todolist.navigation.ListRoute
+import com.example.todolist.navigation.LoginRoute
 
 @Composable
 fun SignupPage(modifier: Modifier = Modifier, navController: NavController, authViewModel: AuthViewModel){
@@ -40,7 +42,7 @@ fun SignupPage(modifier: Modifier = Modifier, navController: NavController, auth
 
     LaunchedEffect(authState.value) {
         when (authState.value) {
-            is AuthState.Authenticated -> navController.navigate("home")
+            is AuthState.Authenticated -> navController.navigate(ListRoute)
             is AuthState.Error -> Toast.makeText(
                 context,
                 (authState.value as AuthState.Error).message,
@@ -95,7 +97,7 @@ fun SignupPage(modifier: Modifier = Modifier, navController: NavController, auth
         Spacer(modifier = Modifier.height(8.dp))
 
         TextButton(onClick =  {
-            navController.navigate("login")
+            navController.navigate(LoginRoute)
         }){
             Text(text = "Already have an account, Login")
 
