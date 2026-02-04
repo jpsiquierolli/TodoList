@@ -14,7 +14,7 @@ Aplicativo Android de lista de tarefas desenvolvido para o trabalho da disciplin
 
 - **Jetpack Compose** - UI declarativa
 - **Firebase Authentication** - Login/cadastro de usuários
-- **Firebase Firestore** - Armazenamento das tarefas na nuvem
+- **Firebase Firestore** - Armazenamento das tarefas
 - **Room** - Banco de dados local (usado inicialmente)
 - **MVVM** - Arquitetura com ViewModels
 - **Navigation Compose** - Navegação entre telas
