@@ -45,14 +45,14 @@ class ListViewModel constructor(
         }
     }
 
-    private fun delete(id: Long) {
+    private fun delete(id: String) {
         viewModelScope.launch {
             repository.delete(id)
 
         }
     }
 
-    private fun completeChanged(id: Long, isCompleted: Boolean) {
+    private fun completeChanged(id: String, isCompleted: Boolean) {
         viewModelScope.launch {
             repository.updateCompleted(id, isCompleted)
         }

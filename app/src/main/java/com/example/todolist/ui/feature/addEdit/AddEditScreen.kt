@@ -24,22 +24,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.todolist.data.FirebaseTodoRepository
-import com.example.todolist.data.TodoRepositoryImpl
 import com.example.todolist.ui.UiEvent
 import com.example.todolist.ui.feature.addEdit.AddEditEvent
-import com.example.todolist.data.TodoDatabaseProvider
 import com.example.todolist.ui.feature.addEdit.AddEditViewModel
 import com.example.todolist.ui.theme.ToDoListTheme
 
 @Composable
 fun AddEditScreen(
-    id: Long?,
+    id: String?,
     navigateBack: () -> Unit,
 ) {
-
-    // val context = LocalContext.current.applicationContext
-    // val database = TodoDatabaseProvider.provide(context)
-    // val repository = TodoRepositoryImpl(database.todoDao)
 
     val repository = FirebaseTodoRepository()
     

@@ -23,7 +23,7 @@ class FirebaseTodoRepository : TodoRepository {
         .document(getUserId())
         .collection("todos")
 
-    override suspend fun insert(title: String, description: String?, id: Long?) {
+    override suspend fun insert(title: String, description: String?, id: String?) {
         val todoData = hashMapOf(
             "title" to title,
             "description" to description,
@@ -35,7 +35,7 @@ class FirebaseTodoRepository : TodoRepository {
         if (id != null) {
             // Update existing todo
             getTodosCollection()
-                .document(id.toString())
+                .document(id)
                 .set(todoData)
                 .await()
         } else {
@@ -46,16 +46,16 @@ class FirebaseTodoRepository : TodoRepository {
         }
     }
 
-    override suspend fun updateCompleted(id: Long, isCompleted: Boolean) {
+    override suspend fun updateCompleted(id: String, isCompleted: Boolean) {
         getTodosCollection()
-            .document(id.toString())
+            .document(id)
             .update("isCompleted", isCompleted)
             .await()
     }
 
-    override suspend fun delete(id: Long) {
+    override suspend fun delete(id: String) {
         getTodosCollection()
-            .document(id.toString())
+            .document(id)
             .delete()
             .await()
     }
@@ -73,7 +73,7 @@ class FirebaseTodoRepository : TodoRepository {
                     try {
                         val id = doc.id
                         Todo(
-                            id = id.hashCode().toLong(),
+                            id = id,
                             title = doc.getString("title") ?: "",
                             description = doc.getString("description"),
                             isCompleted = doc.getBoolean("isCompleted") ?: false
@@ -89,9 +89,9 @@ class FirebaseTodoRepository : TodoRepository {
         awaitClose { listener.remove() }
     }
 
-    override suspend fun getBy(id: Long): Todo? {
+    override suspend fun getBy(id: String): Todo? {
         val doc = getTodosCollection()
-            .document(id.toString())
+            .document(id)
             .get()
             .await()
 

@@ -17,7 +17,7 @@ import kotlinx.serialization.Serializable
 object ListRoute
 
 @Serializable
-data class AddEditRoute(val id: Long? = null)
+data class AddEditRoute(val id: String? = null)
 
 @Serializable
 object LoginRoute

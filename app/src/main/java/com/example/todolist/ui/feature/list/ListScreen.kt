@@ -23,8 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.todolist.data.FirebaseTodoRepository
-import com.example.todolist.data.TodoDatabaseProvider
-import com.example.todolist.data.TodoRepositoryImpl
 import com.example.todolist.domain.todo1
 import com.example.todolist.domain.todo2
 import com.example.todolist.domain.todo3
@@ -39,16 +37,12 @@ import com.example.todolist.ui.theme.ToDoListTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListScreen(
-    navigateToAddEditScreen: (id: Long?) -> Unit,
+    navigateToAddEditScreen: (id: String?) -> Unit,
     modifier: Modifier = Modifier,
     navController: NavController,
     authViewModel: AuthViewModel
 ) {
     val authState = authViewModel.authState.observeAsState()
-    // val context = LocalContext.current.applicationContext
-    // val database = TodoDatabaseProvider.provide(context)
-    // val repository = TodoRepositoryImpl(database.todoDao)
-
     val repository = FirebaseTodoRepository()
 
     val viewModel = viewModel<ListViewModel>() {
@@ -68,7 +62,7 @@ fun ListScreen(
     LaunchedEffect(Unit) {
         viewModel.uiEvent.collect { uiEvent ->
             if (uiEvent is UiEvent.Navigate<*> && uiEvent.route is AddEditRoute) {
-                navigateToAddEditScreen(uiEvent.route.id)
+                navigateToAddEditScreen(uiEvent.route.id as String?)
             }
         }
     }

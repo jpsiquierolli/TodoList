@@ -6,14 +6,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.todolist.data.TodoRepository
+import com.example.todolist.domain.Todo
 import com.example.todolist.ui.UiEvent
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 class AddEditViewModel(
-    private val id: Long? = null,
-    private val repository: TodoRepository,
+    private val id: String? = null,
+    private val repository: TodoRepository
 ) : ViewModel() {
 
     var title by mutableStateOf("")
@@ -57,7 +58,13 @@ class AddEditViewModel(
                 _uiEvent.send(UiEvent.ShowSnackbar(message = "The title can't be empty"))
                 return@launch
             }
-            repository.insert(title, description, id)
+
+            repository.insert(
+                id = id,
+                title = title,
+                description = description
+            )
+
             _uiEvent.send(UiEvent.NavigateBack)
         }
     }
